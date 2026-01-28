@@ -7,32 +7,35 @@ import fs from 'fs';
 const app = express();
 const PORT = 8080;
 
-//FETCH!
+////////FETCH!////////
 const data = JSON.parse(
     fs.readFileSync('./data/data.json', 'utf-8')
 );
 console.log(data);
 
-const stock = JSON.stringify(data);
+// const stock = JSON.stringify(data);
 
-//Puerto activo
+////////Puerto activo////////
 app.listen(PORT, () => {
     console.log("Puerto activo escuchando en 8080!.");
 })
 
-//Endpoints
+////////Endpoints////////
+
+//General
 app.get('/', (req, res) => {
     res.send("<h1>Bienvenido!</h1>")
 })
 
+//Productos
 app.get('/products', (req, res) => {
-    res.json(`${[stock]}`) //Puede ser res.send también.
+    res.send(data);
 })
 
 app.get('/products/:id', (req, res) => {
     const { id } = req.params;
     const producto = data.find(item => item.id == id);
-    res.json(JSON.stringify(producto));
+    res.json(producto);
 })
 
 // Agregar un producto.
@@ -40,3 +43,9 @@ app.get('/products/:id', (req, res) => {
 // Modificar un producto.
 
 // Eliminar un producto.
+
+//Carrito
+
+app.get('/cart', (req, res) => {
+    res.send(`<h3>Su carrito de Compras: </h3>`)
+})
