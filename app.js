@@ -45,7 +45,8 @@ app.get('/products/:id', (req, res) => {
 app.post('/products', (req, res) => {
     const {name, price, status, quantity} = req.body;
 
-    const id =  data.length + 1;
+    // const id =  data.length + 1;
+    const id =  crypto.randomUUID();
     data.push({
         id,
         name,
@@ -61,10 +62,10 @@ app.post('/products', (req, res) => {
 })
 
 // Modelo ejemplo para probar persistencia!
-// {"name": "Pasta Frola", 
-// "price": 2500, 
+// {"name": "Chocotorta", 
+// "price": 2300, 
 // "status": true, 
-// "quantity": 7}
+// "quantity": 8}
 
 
 // Modificar un producto.
