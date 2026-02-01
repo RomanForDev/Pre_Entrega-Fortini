@@ -2,6 +2,7 @@
 
 import express from 'express';
 import fs from 'fs';
+import ProductsManager from './ProductManager.js';
 
 
 const app = express();
@@ -10,15 +11,15 @@ app.use(express.json());
 
 ////////FETCH!////////
 const data = JSON.parse(
-    fs.readFileSync('./data/data.json', 'utf-8')
+    fs.readFileSync('./data/data2.json', 'utf-8')
 );
-console.log(data);
+// console.log(data);
 
 // const stock = JSON.stringify(data);
 
 ////////Puerto activo////////
 app.listen(PORT, () => {
-    console.log("Puerto activo escuchando en 8080!.");
+    console.log(`Puerto activo escuchando en ${PORT}!.`);
 })
 
 ////////Endpoints////////
@@ -52,9 +53,9 @@ app.post('/products', (req, res) => {
         status, 
         quantity
     })
-    //Persistencia:
+    //Persistencia sólo desde Thunder.
     let datos = JSON.stringify(data, null, 2);
-    fs.writeFileSync('./data/data.json', datos, 'utf-8');
+    fs.writeFileSync('./data/data2.json', datos, 'utf-8'); //data para local. data2 para ProductManager
     console.log(datos);
     res.json({ status: 'success', dataProvide: {id}})
 })
@@ -68,15 +69,16 @@ app.post('/products', (req, res) => {
 
 // Modificar un producto.
 
-app.put("/products/:id", (req, res) => {
-    const { id } = req.params;
-    const dataFind = data.findIndex(item => item.id == id)
-    const modifier = req.body;
-    if(modifier == 0
-    ){} // Acá.
-    
-})
+// app.put("/products/:id", (req, res) => {
+//     const { id } = req.params;
+//     const dataFind = data.findIndex(item => item.id == id)
+//     const modifier = req.body;
+//     if(modifier == 0
+//     ){} // Acá.
+// })
+
 // Eliminar un producto.
+
 
 //Carrito
 
@@ -90,7 +92,15 @@ app.post('/cart/products/:id', (req,res) => {
     res.json({ status: 'success', dataProvide: {id}});
 })
 
+//prueba de la respuesta del carrito.
+// app.get('/cart/products/:id', (req,res) => {
+//     const { id } = req.params;
+//     const producto = data.find(item => item.id == id);
+//     res.json(producto)
+// })
+
 //Desestructuracion
+
 const cart = []
 const carrito = JSON.parse(fs.readFileSync('./data/cart.json'));
 cart.push(carrito)
@@ -100,3 +110,18 @@ const carroDef = JSON.stringify(cart);
 app.get('/cart', (req, res) => {
     res.send(`<h3>Su carrito de Compras es ${carroDef}: </h3>`)
 })
+
+/////Escritura Data2 (bucle, usado sólo una vez)/////
+
+// const ProdManager = new ProductsManager
+// const prod1= ProdManager.createProduct("Selva Negra", 5000, true, 5)
+// const prod2= ProdManager.createProduct("Tres Leches", 3500, false, 0)
+// const prod3= ProdManager.createProduct("Cheesecake", 4500, true, 3)
+// const prod4= ProdManager.createProduct("Carrot Cake", 3000, true, 2)
+// const prod5= ProdManager.createProduct("Lemon Pie", 3700, true, 7)
+// const prod6= ProdManager.createProduct("Red Velvet", 5000, true, 2)
+// const prod7= ProdManager.createProduct("Rogel", 4500, true, 4)
+// const prod8= ProdManager.createProduct("Torta Sacher", 6000, false, 0)
+// const prod9= ProdManager.createProduct("Balcarce", 4200, true, 6)
+// const prod10= ProdManager.createProduct("Pavlova", 3000, true, 3)
+

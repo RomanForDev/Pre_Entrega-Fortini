@@ -1,48 +1,42 @@
-// import crypto from 'crypto'
-// import fs from 'fs/promises'
-// const path = './data/data.json';
+import crypto from 'crypto'
+import fs from 'fs/promises'
+const path = './data/data2.json';
 
-// class ProductsManager {
-//     constructor(){
-//         this.products = []
-//     }
-//     static id = 0
+//Esto causa un bucle.//
+class ProductsManager {
+    constructor(){
+        this.products = []
+    }
 
-//     async createProduct(product) {
-//         const { name, price, status, quantity } = product;
-//         id++;
-//         // const hash = crypto.createHash('sha256');
-//         // const id = crypto.randomUUID();
+    async createProduct(name, price, status, quantity) {
+        // const { name, price, status, quantity } = product;
+        const id = crypto.randomUUID();
 
-
-//         this.products.push({
-//             id,
-//             name,
-//             price,
-//             status,
-//             quantity
-//         });
-//         const text = JSON.stringify( this.products, null, 2)
-//         await fs.writeFile(path, text);
+        this.products.push({
+            id,
+            name,
+            price,
+            status,
+            quantity
+        });
+        console.log(this.products);
         
-//     }
+        const text = JSON.stringify( this.products, null, 2)
+        await fs.writeFile(path, text);
+    }
 
-//     async getProducts() {
-//         try {        
-//             const data = await fs.readFile( path, 'utf-8');
-//             this.products = JSON.parse(data);
-//             return this.products
-//         } catch (error) {
-//             console.error(error)
-//             return []
-//         }
+    async getProducts() {
+        try {        
+            const data = await fs.readFile( path, 'utf-8');
+            this.products = JSON.parse(data);
+            return this.products
+        } catch (error) {
+            console.error(error)
+            return []
+        }
 
-//     }
-
-//     auth(userName, password){
-        
-//     }
-// }
+    }
+}
 
 
-// export default ProductsManager
+export default ProductsManager
