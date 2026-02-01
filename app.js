@@ -59,10 +59,11 @@ app.post('/products', (req, res) => {
     res.json({ status: 'success', dataProvide: {id}})
 })
 
-// {"name": "Pavlova", 
-// "price": 3000, 
+// Modelo ejemplo para probar persistencia!
+// {"name": "Pasta Frola", 
+// "price": 2500, 
 // "status": true, 
-// "quantity": 3} Modelo ejemplo
+// "quantity": 7}
 
 
 // Modificar un producto.
@@ -79,6 +80,23 @@ app.put("/products/:id", (req, res) => {
 
 //Carrito
 
+app.post('/cart/products/:id', (req,res) => {
+    const { id } = req.params;
+    const producto = data.find(item => item.id == id);
+    console.log(producto);
+    
+    // JSON.parse(cart);
+    fs.writeFileSync('./data/cart.json', JSON.stringify(producto), 'utf-8');
+    res.json({ status: 'success', dataProvide: {id}});
+})
+
+//Desestructuracion
+const cart = []
+const carrito = JSON.parse(fs.readFileSync('./data/cart.json'));
+cart.push(carrito)
+const carroDef = JSON.stringify(cart);
+
+
 app.get('/cart', (req, res) => {
-    res.send(`<h3>Su carrito de Compras: </h3>`)
+    res.send(`<h3>Su carrito de Compras es ${carroDef}: </h3>`)
 })
