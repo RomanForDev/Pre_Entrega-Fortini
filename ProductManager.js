@@ -1,36 +1,37 @@
 // import crypto from 'crypto'
 // import fs from 'fs/promises'
-// const path = './data/users.json';
+// const path = './data/data.json';
 
-// class UsersManager {
+// class ProductsManager {
 //     constructor(){
-//         this.users = []
+//         this.products = []
 //     }
+//     static id = 0
 
-//     async createUser(user) {
-//         const { name, email, password } = user;
-//         const hash = crypto.createHash('sha256');
-//         const id = crypto.randomUUID();
+//     async createProduct(product) {
+//         const { name, price, status, quantity } = product;
+//         id++;
+//         // const hash = crypto.createHash('sha256');
+//         // const id = crypto.randomUUID();
 
-//         hash.update(password);
-//         let passwordHash = hash.digest('hex');
 
-//         this.users.push({
+//         this.products.push({
 //             id,
 //             name,
-//             email,
-//             password: passwordHash
+//             price,
+//             status,
+//             quantity
 //         });
-//         const text = JSON.stringify( this.users, null, 2)
+//         const text = JSON.stringify( this.products, null, 2)
 //         await fs.writeFile(path, text);
         
 //     }
 
-//     async getUsers() {
+//     async getProducts() {
 //         try {        
 //             const data = await fs.readFile( path, 'utf-8');
-//             this.users = JSON.parse(data);
-//             return this.users
+//             this.products = JSON.parse(data);
+//             return this.products
 //         } catch (error) {
 //             console.error(error)
 //             return []
@@ -43,4 +44,5 @@
 //     }
 // }
 
-// export default UsersManager
+
+// export default ProductsManager
