@@ -1,7 +1,1 @@
-{
-  "id": "0a80c1ba-30e0-4086-94f4-5e4bb4a68ae9",
-  "name": "Tres Leches",
-  "price": 3500,
-  "status": false,
-  "quantity": 0
-}
+{"id":"11e0cbbb-5554-4856-85b6-b1e023e7d36e","name":"Chocotorta","price":2300,"status":true,"quantity":8}

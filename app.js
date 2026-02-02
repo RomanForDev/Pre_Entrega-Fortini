@@ -100,7 +100,7 @@ app.post('/cart/products/:id', (req,res) => {
     const productoCarro = data.find(item => item.id == id);
     console.log(productoCarro);
     // JSON.parse(cart);
-    fs.writeFileSync('./data/cart.json', JSON.stringify(productoCarro, null, 2), 'utf-8');
+    fs.writeFileSync('./data/cart.json', JSON.stringify(productoCarro), 'utf-8');
     res.json({ status: 'success', dataProvide: {id}});
 })
 
@@ -111,7 +111,7 @@ app.post('/cart/products/:id', (req,res) => {
 //     res.json(producto)
 // })
 
-
+//Ver carrito en navegador.
 
 app.get('/cart', (req, res) => {
     res.send(`<h3>Su carrito de Compras es ${carroDef}: </h3>`)
