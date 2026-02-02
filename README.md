@@ -21,3 +21,6 @@ Persistencia de la Información
 La persistencia se implementará utilizando el sistema de archivos, donde los archivos products.json y carts.json respaldarán la información.
 Se debe utilizar el ProductManager desarrollado en el desafío anterior y crear un CartManager para gestionar el almacenamiento de estos archivos JSON.
 • • Nota: No es necesario realizar ninguna implementación visual, todo el flujo se puede realizar por Postman o por el cliente de tu preferencia.
+
+FALTA ELIMINAR PRODUCTO!
+NO UTILIZA PRODUCT MANAGER POR UN BUCLE.

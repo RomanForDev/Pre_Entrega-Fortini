@@ -68,12 +68,5 @@
     "price": 3000,
     "status": true,
     "quantity": 3
-  },
-  {
-    "id": "00830d06-0504-40f3-8ad0-c7959737d076",
-    "name": "Pasta Frola",
-    "price": 2500,
-    "status": true,
-    "quantity": 7
   }
 ]

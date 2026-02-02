@@ -70,16 +70,19 @@ app.post('/products', (req, res) => {
 
 // Modificar un producto.
 
-// app.put("/products/:id", (req, res) => {
-//     const { id } = req.params;
-//     const dataFind = data.findIndex(item => item.id == id)
-//     const modifier = req.body;
-//     if(modifier == 0
-//     ){} // Acá.
-// })
 
 // Eliminar un producto.
 
+app.delete('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const index = data.findIndex(item => item.id == id);
+    if(index != -1){
+        data.splice(index, 1)
+        console.log(data);
+        fs.writeFileSync('./data/data2.json', JSON.stringify(data, null, 2), 'utf-8')
+        res.json({status: "success"})
+    };
+})
 
 //Carrito
 
