@@ -86,13 +86,21 @@ app.delete('/products/:id', (req, res) => {
 
 //Carrito
 
+//Desestructuracion
+
+const cart = []
+const carrito = JSON.parse(fs.readFileSync('./data/cart.json'));
+cart.push(carrito)
+const carroDef = JSON.stringify(cart);
+
+//Agregar al carrito.
+
 app.post('/cart/products/:id', (req,res) => {
     const { id } = req.params;
-    const producto = data.find(item => item.id == id);
-    console.log(producto);
-    
+    const productoCarro = data.find(item => item.id == id);
+    console.log(productoCarro);
     // JSON.parse(cart);
-    fs.writeFileSync('./data/cart.json', JSON.stringify(producto), 'utf-8');
+    fs.writeFileSync('./data/cart.json', JSON.stringify(productoCarro, null, 2), 'utf-8');
     res.json({ status: 'success', dataProvide: {id}});
 })
 
@@ -103,12 +111,6 @@ app.post('/cart/products/:id', (req,res) => {
 //     res.json(producto)
 // })
 
-//Desestructuracion
-
-const cart = []
-const carrito = JSON.parse(fs.readFileSync('./data/cart.json'));
-cart.push(carrito)
-const carroDef = JSON.stringify(cart);
 
 
 app.get('/cart', (req, res) => {
