@@ -2,7 +2,6 @@
 
 import express from 'express';
 import fs from 'fs';
-import ProductsManager from './ProductManager.js';
 
 
 const app = express();
@@ -13,14 +12,6 @@ app.use(express.json());
 const data = JSON.parse(
     fs.readFileSync('./data/data2.json', 'utf-8')
 );
-// console.log(data);
-
-// const stock = JSON.stringify(data);
-
-////////Puerto activo////////
-app.listen(PORT, () => {
-    console.log(`Puerto activo escuchando en ${PORT}!.`);
-})
 
 ////////Endpoints////////
 
@@ -104,12 +95,6 @@ app.post('/cart/products/:id', (req,res) => {
     res.json({ status: 'success', dataProvide: {id}});
 })
 
-//prueba de la respuesta del carrito.
-// app.get('/cart/products/:id', (req,res) => {
-//     const { id } = req.params;
-//     const producto = data.find(item => item.id == id);
-//     res.json(producto)
-// })
 
 //Ver carrito en navegador.
 
@@ -117,17 +102,10 @@ app.get('/cart', (req, res) => {
     res.send(`<h3>Su carrito de Compras es ${carroDef}: </h3>`)
 })
 
-/////Escritura Data2 (bucle, usado sólo una vez)/////
+////////Puerto activo////////
+app.listen(PORT, () => {
+    console.log(`Puerto activo escuchando en ${PORT}!.`);
+})
 
-// const ProdManager = new ProductsManager
-// const prod1= ProdManager.createProduct("Selva Negra", 5000, true, 5)
-// const prod2= ProdManager.createProduct("Tres Leches", 3500, false, 0)
-// const prod3= ProdManager.createProduct("Cheesecake", 4500, true, 3)
-// const prod4= ProdManager.createProduct("Carrot Cake", 3000, true, 2)
-// const prod5= ProdManager.createProduct("Lemon Pie", 3700, true, 7)
-// const prod6= ProdManager.createProduct("Red Velvet", 5000, true, 2)
-// const prod7= ProdManager.createProduct("Rogel", 4500, true, 4)
-// const prod8= ProdManager.createProduct("Torta Sacher", 6000, false, 0)
-// const prod9= ProdManager.createProduct("Balcarce", 4200, true, 6)
-// const prod10= ProdManager.createProduct("Pavlova", 3000, true, 3)
+
 
