@@ -20,8 +20,9 @@ app.get('/', (req, res) => {
 })
 
 
-app.use('/api/products', productsRouter); //Por que usersRouter?
-app.use('/api/cart', cartRouter); //Por que usersRouter?
+app.use('/api/products', productsRouter);
+
+app.use('/api/cart', cartRouter);
 
 
 ////////Puerto activo////////

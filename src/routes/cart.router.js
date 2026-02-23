@@ -18,7 +18,6 @@ router.post('/:id', (req,res) => {
     const { id } = req.params;
     const productoCarro = data.find(item => item.id == id);
     console.log(productoCarro);
-    // JSON.parse(cart);
     fs.writeFileSync('./data/cart.json', JSON.stringify(productoCarro), 'utf-8');
     res.json({ status: 'success', dataProvide: {id}});
 })

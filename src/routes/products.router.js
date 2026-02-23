@@ -22,7 +22,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const {name, price, status, quantity} = req.body;
 
-    // const id =  data.length + 1;
     const id =  crypto.randomUUID();
     data.push({
         id,
